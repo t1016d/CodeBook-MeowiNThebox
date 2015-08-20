@@ -9,8 +9,7 @@ typedef long long ll;
 typedef pair<int,int> PII;
 typedef vector<int> VI;
 
-int main()
-{
+int main() {
     
     return 0;
 }
