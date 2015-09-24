@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}Basic}{2}
+\contentsline {subsection}{\numberline {1.1}default code}{2}
+\contentsline {subsection}{\numberline {1.2}.vimrc}{2}
+\contentsline {section}{\numberline {2}math}{2}
+\contentsline {subsection}{\numberline {2.1}ext gcd}{2}
+\contentsline {section}{\numberline {3}flow}{3}
+\contentsline {subsection}{\numberline {3.1}dinic}{3}
+\contentsline {section}{\numberline {4}string}{4}
+\contentsline {subsection}{\numberline {4.1}KMP}{4}
+\contentsline {subsection}{\numberline {4.2}Z-value}{5}
+\contentsline {subsection}{\numberline {4.3}Suffix Array(N log N)}{6}
+\contentsline {section}{\numberline {5}graph}{9}
+\contentsline {section}{\numberline {6}data structure}{9}
+\contentsline {section}{\numberline {7}geometry}{9}
