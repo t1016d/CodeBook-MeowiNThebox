@@ -27,7 +27,7 @@ struct PT {
 	PT operator/(const double b) const {
 		return (PT) {x/b, y/b};
 	}
-	double operator^(const PT &b) const {
+	double operator%(const PT &b) const {
 		return x*b.y - y*b.x;
 	}
 
@@ -44,7 +44,7 @@ void update(PT a, PT b, PT c, PT &o, double &r) {
 	else {
 		PT p1 = (a+b)/2.0, p2 = p1 + (b-a).T();
 		PT p3 = (a+c)/2.0, p4 = p3 + (c-a).T();
-		double a123 = (p2-p1)^(p3-p1), a124 = (p2-p1)^(p4-p1);
+		double a123 = (p2-p1)%(p3-p1), a124 = (p2-p1)%(p4-p1);
 		if(a123 * a124 > 0.0)	a123 = -a123;
 		else	a123 = abs(a123), a124 = abs(a124);
 		o = (p4*a123 + p3*a124) / (a123 + a124);
@@ -100,7 +100,7 @@ int main() {
 			puts("-----");
 			#endif // test
 		}
-
+        
 		printf("%.3f\n", r);
 	}
 }
