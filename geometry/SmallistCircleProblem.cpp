@@ -53,7 +53,7 @@ void update(PT a, PT b, PT c, PT &o, double &r) {
 }
 
 int main() {
-    //freopen("C:/Users/S11/Desktop/pb.in", "r", stdin);
+	//freopen("C:/Users/S11/Desktop/pb.in", "r", stdin);
 
 	srand(7122);
 
@@ -80,14 +80,14 @@ int main() {
 
 				b = p[j];
 				c = (PT) {-1.0, -1.0};
-                update(a, b, c, o, r);
+				update(a, b, c, o, r);
 
-                for(int k = 0; k < j; k++) {
+				for(int k = 0; k < j; k++) {
 					if((p[k]-o).len() <= r)	continue;
 
 					c = p[k];
 					update(a, b, c, o, r);
-                }
+				}
 			}
 
 			#ifdef test
@@ -100,7 +100,7 @@ int main() {
 			puts("-----");
 			#endif // test
 		}
-        
+
 		printf("%.3f\n", r);
 	}
 }
