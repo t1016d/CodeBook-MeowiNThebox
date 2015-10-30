@@ -1,19 +1,11 @@
 color torte
 syn on
-set guifont=Consolas:h16:
-set number
-set showcmd
-set autoindent
-set smartindent
-set tabstop=4
-set showmatch
+set guifont=Consolas:h16: nu sc ai si ts=4 sm sts=4 sw=4
 set comments=sl:/*,mb:\ *,elx:\ */
 set backspace=indent,eol,start
-set softtabstop=4
-set shiftwidth=4
 
-map <F9> <ESC>:w<CR>:!g++ % -o %< -O2 -std=c++0x<CR>
-map <S-F9> <ESC>:w<CR>:!g++ % -o %< -O2 -D_DEBUG_ -std=c++0x<CR>
+map <F9> <ESC>:w<CR>:!g++ % -o %< -O2 -Wno-unused-result -std=c++0x<CR>
+map <S-F9> <ESC>:w<CR>:!g++ % -o %< -O2 -Wno-unused-result -D_DEBUG_ -std=c++0x<CR>
 map <F5> <ESC>:!./%<<CR>
 map <F6> <ESC>:w<CR>ggvG"+y
 map <S-F5> <ESC>:!./%< < %<.in<CR>
