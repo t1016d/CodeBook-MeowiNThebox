@@ -8,7 +8,7 @@
 #ifdef _DEBUG_
 	#define debug(...) printf(__VA_ARGS__)
 #else
-	#define debug(...) 0
+	#define debug(...) (void)0
 #endif
 using namespace std;
 typedef long long ll;
