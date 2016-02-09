@@ -9,7 +9,7 @@ void KMP_build(const char *S,int *F) {
 	}
 }
 
-VI MKP_match(const char *S,const int *F,const char *T) {
+VI KMP_match(const char *S,const int *F,const char *T) {
 	VI ans;
 	int p=-1;
 	for(int i=0;T[i];i++) {
