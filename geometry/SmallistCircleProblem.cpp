@@ -3,8 +3,6 @@
 #include <algorithm>
 #include <cmath>
 
-//#define test
-
 using namespace std;
 
 const int N = 1000000 + 10;
@@ -53,8 +51,6 @@ void update(PT a, PT b, PT c, PT &o, double &r) {
 }
 
 int main() {
-	//freopen("C:/Users/S11/Desktop/pb.in", "r", stdin);
-
 	srand(7122);
 
 	int m, n;
@@ -89,16 +85,6 @@ int main() {
 					update(a, b, c, o, r);
 				}
 			}
-
-			#ifdef test
-			printf("i=%d\n", i);
-			printf("a=(%.1f, %.1f)\n", a.x, a.y);
-			printf("b=(%.1f, %.1f)\n", b.x, b.y);
-			printf("c=(%.1f, %.1f)\n", c.x, c.y);
-			printf("o=(%.1f, %.1f)\n", o.x, o.y);
-			printf("r=%.1f\n", r);
-			puts("-----");
-			#endif // test
 		}
 
 		printf("%.3f\n", r);

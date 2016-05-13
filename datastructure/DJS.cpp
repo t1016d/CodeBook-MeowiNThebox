@@ -50,13 +50,10 @@ struct DisJointSet {
 	}
 
 	int find(int x) {
-		debug("x=%d||\n", x);
-		//debug("p[x]=%d\n", p[x]);
 		return x==p[x] ? x : find(p[x]);
 	}
 
 	void uni(int x, int y) {
-		debug("QQ\n");
 		x = find(x), y = find(y);
 		if(x == y)	return ;
 		if(sz[x] < sz[y])	swap(x, y);
@@ -91,7 +88,6 @@ struct Seg {
 	}
 
 	void solve(int l, int r) {
-		debug("---%d %d---\n", l, r);
 		djs.save();
 		for(auto p : es)	djs.uni(p.F, p.S);
 
@@ -134,7 +130,6 @@ int main() {
 			int p = prv[eg];
 			if(p) {
 				seg->add(p, i, eg, 1, k);
-				debug("----add %d %d-----%d %d\n", eg.F, eg.S, p, i);
 				prv[eg] = 0;
 			}
 			else	prv[eg] = i;
@@ -143,7 +138,6 @@ int main() {
 	for(auto p : prv) {
 		if(p.S) {
 			seg->add(p.S, k, p.F, 1, k);
-			debug("----add2 %d %d-----%d %d\n", p.F.F, p.F.S, p.S, k);
 		}
 	}
 	
