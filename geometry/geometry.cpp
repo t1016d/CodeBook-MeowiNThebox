@@ -11,55 +11,72 @@ typedef long long ll;
 typedef pair<int,int> PII;
 typedef vector<int> VI;
 
-typedef double dou;
-struct PT{
-	dou x,y;
-	PT(dou x_=0.0,dou y_=0.0): x(x_),y(y_) {}
-	PT operator + (const PT &b) const { return PT(x+b.x,y+b.y); }
-	PT operator - (const PT &b) const { return PT(x-b.x,y-b.y); }
-	PT operator * (const dou &t) const { return PT(x*t,y*t); }
-	dou operator * (const PT &b) const { return x*b.x+y*b.y; }
-	dou operator % (const PT &b) const { return x*b.y-b.x*y; }
-	dou len2() const { return x*x+y*y; }
-	dou len() const { return sqrt(len2()); } 
-};
+typedef double db;
+typedef pair<db, db> PDD;
 
-const dou INF=1e12;
-const dou eps=1e-8;
-PT inter(const PT &P1,const PT &T1,const PT &P2,const PT &T2) // intersection
-{
-	if(fabs(T1%T2)<eps)
-		return PT(INF,INF);
-	dou u=((P2-P1)%T2)/(T1%T2);
-	return P1+T1*u;
+PDD operator+(const PDD &a, const PDD &b) {
+    return MP(a.F+b.F, a.S+b.S);
+}
+PDD operator-(const PDD &a, const PDD &b) {
+    return MP(a.F-b.F, a.S-b.S);
+}
+PDD operator*(const PDD &a, const db &b) {
+    return MP(a.F*b, a.S*b);
+}
+PDD operator/(const PDD &a, const db &b) {
+    return MP(a.F/b, a.S/b);
+}
+db dot(const PDD &a, const PDD &b) {
+    return a.F*b.F + a.S*b.S;
+}
+db cross(const PDD &a, const PDD &b) {
+    return a.F*b.S - a.S*b.F;
+}
+db abs2(const PDD &a) {
+	return dot(a, a);
+}
+db abs(const PDD &a) {
+    return sqrt( abs2(a) );
 }
 
-PT conv[500],cat,to;
+const db PI = acos(-1);
+const db INF = 1e18;
+const db EPS = 1e-8;
 
-int main()
+PDD inter(const PDD &p1, const PDD &v1, const PDD &p2, const PDD &v2) // intersection
 {
-	int T,N,M;
-	scanf("%d",&T);
-	while(T--)
-	{
-		scanf("%d%d",&N,&M);
-		for(int i=0;i<N;i++)
-			scanf("%lf%lf",&conv[i].x,&conv[i].y);
-		conv[N]=conv[0];
-		dou ans=0.0;
-		while(M--)
-		{
-			scanf("%lf%lf%lf%lf",&cat.x,&cat.y,&to.x,&to.y);
-			for(int i=0;i<N;i++)
-				if(fabs((conv[i]-conv[i+1])%to)>eps)
-				{
-				//	printf("M:%d i=%d\n",M,i);
-					PT at=inter(conv[i],conv[i]-conv[i+1],cat,to);
-					if((conv[i]-at)*(conv[i+1]-at)<eps && (at-cat)*to>-eps)
-						ans=max(ans,(cat-at).len());
-				}
-		}
-		printf("%.4f\n",ans);
+	if(fabs(cross(v1, v2)) < EPS)
+		return MP(INF, INF);
+	dou k = cross((p2-p1), T2) / cross(v1, v2);
+	return p1 + v1*k;
+}
+void CircleInter(PDD o1, db r1, PDD o2, db r2) {
+	if(r2>r1)
+		swap(r1, r2), swap(o1, o2);
+	db d = abs(o2-o1);
+	PDD v = o2-o1;
+	v = v / abs(v);
+	PDD t = (v.S, -v.F);
+
+	db area;
+	vector<PDD> pts;
+	if(d > r1+r2+EPS)
+		area = 0;
+	else if(d < r1-r2)
+		area = r2*r2*PI;
+	else if(r2*r2+d*d > r1*r1){
+		db x = (r1*r1 - r2*r2 + d*d) / (2*d);
+		db th1 = 2*acos(x/r1), th2 = 2*acos((d-x)/r2);
+		area = (r1*r1*(th1 - sin(th1)) + r2*r2*(th2 - sin(th2))) / 2;
+		db y = sqrt(r1*r1 - x*x);
+		pts.PB(o1 + v*x + t*y), pts.PB(o1 + v*x - t*y);
+	} else {
+		db x = (r1*r1 - r2*r2 - d*d) / (2*d);
+		db th1 = acos((d+x)/r1), th2 = acos(x/r2);
+		area = r1*r1*th1 - r1*d*sin(th1) + r2*r2*(PI-th2);
+		db y = sqrt(r2*r2 - x*x);
+		pts.PB(o2 + v*x + t*y), pts.PB(o2 + v*x - t*y);
 	}
-	return 0;
+	//Area: area
+	//Intersections: pts
 }
