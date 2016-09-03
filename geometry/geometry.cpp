@@ -1,7 +1,7 @@
 // correct code of NPSC2013 senior-final pF
 
 #include <bits/stdc++.h>
-#define pb push_back
+#define PB push_back
 #define F first
 #define S second
 #define SZ(x) ((int)(x).size())
@@ -47,7 +47,7 @@ PDD inter(const PDD &p1, const PDD &v1, const PDD &p2, const PDD &v2) // interse
 {
 	if(fabs(cross(v1, v2)) < EPS)
 		return MP(INF, INF);
-	dou k = cross((p2-p1), T2) / cross(v1, v2);
+	db k = cross((p2-p1), v2) / cross(v1, v2);
 	return p1 + v1*k;
 }
 void CircleInter(PDD o1, db r1, PDD o2, db r2) {
@@ -56,7 +56,7 @@ void CircleInter(PDD o1, db r1, PDD o2, db r2) {
 	db d = abs(o2-o1);
 	PDD v = o2-o1;
 	v = v / abs(v);
-	PDD t = (v.S, -v.F);
+	PDD t = MP(v.S, -v.F);
 
 	db area;
 	vector<PDD> pts;
@@ -79,4 +79,8 @@ void CircleInter(PDD o1, db r1, PDD o2, db r2) {
 	}
 	//Area: area
 	//Intersections: pts
+}
+
+int main() {
+	return 0;
 }
