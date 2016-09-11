@@ -1,27 +1,15 @@
-#include <bits/stdc++.h>
-#define PB push_back
-#define MP make_pair
-#define F first
-#define S second
-#define SZ(x) ((int)(x).size())
-using namespace std;
-typedef long long ll;
-typedef pair<int,int> PII;
-typedef vector<int> VI;
-
-/********************************/
-// dinic
 const int MAXV=300;
 const int MAXE=10000;
 const int INF=(int)1e9+10;
+// ^ config those things
 
-struct E{
+struct E {
 	int to,co;//capacity
-	E(int t=0,int c=0):to(t),co(c){}
+	E(int t=0,int c=0):to(t),co(c) {}
 }eg[2*MAXE];
 
 // source:0  sink:n-1
-struct Flow{
+struct Flow {
 	VI e[MAXV];
 	int ei,v;
 	void init(int n) {
@@ -48,7 +36,7 @@ struct Flow{
 		while(ql<qr && d[v-1]==-1) {
 			int n=qu[ql++];
 			VI &v=e[n];
-			for(int i=v.size()-1;i>=0;i--) {
+			for(int i=SZ(v)-1;i>=0;i--) {
 				int u=v[i];
 				if(d[eg[u].to]==-1 && eg[u].co>0) {
 					d[eg[u].to]=d[n]+1;
@@ -64,8 +52,7 @@ struct Flow{
 			return p;
 		VI &u=e[n];
 		int temp;
-		for(int i=ptr[n];i<SZ(u);i++)
-		{
+		for(int i=ptr[n];i<SZ(u);i++) {
 			if(d[n]+1!=d[eg[u[i]].to] || eg[u[i]].co==0)
 				continue;
 			if((temp=go(eg[u[i]].to,min(p,eg[u[i]].co)))==0)
@@ -89,8 +76,3 @@ struct Flow{
 		return ans;
 	}
 }flow;
-
-int main() {
-	
-	return 0;
-}
