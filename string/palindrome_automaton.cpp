@@ -1,6 +1,6 @@
 const int MAXN=100050;
 char s[MAXN];
-int n, q; // n: string length
+int n; // n: string length
 
 typedef pair<PII,int> PD;
 vector<PD> pal;
