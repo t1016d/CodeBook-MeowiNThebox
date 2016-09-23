@@ -130,7 +130,9 @@ inline void change(int x,int b){
 		up(x);
 }
 inline int query_lca(int u,int v){
-/*假設求鏈上點權的總和，sum是子樹的權重和，data是節點的權重*/
+/*retrun: sum of weight of vertices on the chain (u->v)
+sum: total weight of the subtree
+data: weight of the vertex */
 	access(u);
 	int lca=access(v);
 	splay(u);
