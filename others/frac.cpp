@@ -35,4 +35,8 @@ struct Frac {
 		Frac t=Frac(x.b,x.a);
 		return (*this)*t;
 	}
+	bool operator < (Frac x) {
+		ll lcm=b/__gcd(b,x.b)*x.b;
+		return ( (lcm/b)*a < (lcm/x.b)*x.a );
+	}
 };
