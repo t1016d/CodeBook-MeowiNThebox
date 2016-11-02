@@ -26,9 +26,9 @@ int KM() {
 			weight[i]=max(weight[i], a[i][j]);
 	}
 	fill(match, match+N+N, -1);
-	for(int i=0;i<N;i++) {
+	for(int u=0;u<N;u++) {
 		fill(vis, vis+N+N, 0);
-		while(!DFS(i)) {
+		while(!DFS(u)) {
 			int d=INF;
 			for(int i=0;i<N;i++) {
 				if(!vis[i]) continue;
