@@ -52,6 +52,8 @@ struct SA{
 				maxR=max(maxR,R[SA[j]]);
 			}
 		}
+		if (len == 1)
+			SA[0] = R[0] = 0;
 	}
 	void build_H() {
 		memset(H,0,sizeof(int)*(len+10));
