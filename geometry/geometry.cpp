@@ -19,7 +19,7 @@ const tp EPS = 1e-9;
 
 bool eq(tp a, tp b) { return a-b<=EPS && b-a<=EPS; }
 bool lt(tp a, tp b) { return a < b-EPS; }
-bool le(tp a, tp b) { return !lt(b, a) }
+bool le(tp a, tp b) { return !lt(b, a); }
 bool gt(tp a, tp b) { return lt(b, a); }
 bool ge(tp a, tp b) { return !lt(a, b); }
 
@@ -41,26 +41,21 @@ struct coor {
 	// 2D only
 	tp operator%(const coor p) const { return x*p.y - y*p.x; }
 	bool operator<(const coor p) const {
-		if(x != p.x)
-			return x<p.x;
-		if(y != p.y)
-			return y<p.y;
+		if(x != p.x)	return x<p.x;
+		if(y != p.y)	return y<p.y;
 		return z<p.z;
 	}
 };
-tp abs2(coor a) { return a.x*a.x+a.y*a.y+a.z*a.z; }
-db abs(coor a) { return sqrt(abs2(a)); }
+tp abs2(const coor a) { return a.x*a.x+a.y*a.y+a.z*a.z; }
+db abs(const coor a) { return sqrt(abs2(a)); }
+coor perp(const coor p) { return coor(-p.y, p.x); } // +0.5pi
 
 bool polar(const coor a, const coor b) {
 	// integral
-	if(a.y*b.y<0)
-		return a.y>0;
-	if(b.y==0 and b.x>0)
-		return false;
-	if(a.y==0 and a.x>0)
-		return true;
+	if(a.y*b.y<0)			return a.y>0;
+	if(b.y==0 and b.x>0)	return false;
+	if(a.y==0 and a.x>0)	return true;
 	return a%b>0;
-	
 	//floating
 	return a.atan() < b.atan();
 }
