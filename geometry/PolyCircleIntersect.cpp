@@ -1,8 +1,7 @@
-coor ORI , info[ N ];
-db r; int n;
 // Divides into multiple triangle, and sum up
 // oriented area
-db area2(coor pa, coor pb){
+int sign(db x) { return x < 0 ? -1 : x > 0; }
+db area2(coor pa, coor pb, db r){
 	if( abs(pa) < abs(pb) ) swap(pa, pb);
 	if( abs(pb) < EPS ) return 0;
 	db S, h, theta;
@@ -19,9 +18,12 @@ db area2(coor pa, coor pb){
 	}else S = .5*sin(C)*a*b;
 	return S;
 }
-db area() {
+db area(coor ori, db r, const poly &P) {
 	db S = 0;
-	for(int i = 0; i < n; ++i)
-		S += abs( area2(info[i], info[i + 1]) * sign( det(info[i], info[i + 1]));
+	int n = SZ(P);
+	for(int i = 0; i < n; ++i) {
+		coor v1=P[i]-ori, v2=P[(i+1)%n]-ori;
+		S += area2(v1, v2, r) * sign(v1%v2);
+	}
 	return fabs(S);
 }
