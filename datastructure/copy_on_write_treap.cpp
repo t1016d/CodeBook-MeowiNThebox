@@ -150,25 +150,16 @@ int main() {
  
         Treap *a, *b, *c, *d;
         a = b = c = d = NULL;
-        split(t, l, a, b);
-        dropRef(a);
-        split(b, r-l, c, d);
-        dropRef(b);
-        dropRef(d);
-        split(t, x, a, b);
-        dropRef(t);
-        Treap* t2 = merge(c, b);
-        dropRef(b);
-        dropRef(c);
-        t = merge(a, t2);
-        dropRef(a);
-        dropRef(t2);
- 
+        split(t, l, a, b);		dropRef(a);
+        split(b, r-l, c, d);	dropRef(b);	dropRef(d);
+        split(t, x, a, b);		dropRef(t);
+
+        Treap* t2 = merge(c, b);	dropRef(b);	dropRef(c);
+        
+		t = merge(a, t2);	dropRef(a);	dropRef(t2);
         if(t->sz > m) {
             Treap* t2 = NULL;
-            split(t, m, t2, a);
-            dropRef(a);
-            dropRef(t);
+            split(t, m, t2, a);		dropRef(a);	dropRef(t);
             t = t2;
         }
     }
