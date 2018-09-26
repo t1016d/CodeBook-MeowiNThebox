@@ -1,15 +1,3 @@
-#include <bits/stdc++.h>
-#define PB push_back
-#define F first
-#define S second
-#define SZ(x) ((int)(x).size())
-#define ALL(x) (x).begin(),(x).end()
-#define MP make_pair
-using namespace std;
-typedef long long ll;
-typedef pair<int,int> PII;
-typedef vector<int> VI;
-
 typedef double tp;
 typedef double db;
 
